@@ -44,7 +44,16 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
-    <script src="assets/code.js"></script>
+    <script src="assets/code.js">
+
+        $(document).ready(function () {
+
+            $(".btn").click(function(event) {
+                console.log("you clicked: ", this.innerHTML)
+            });
+
+        });
+    </script>
 </body>
 
 </html>
