@@ -12,6 +12,7 @@
 <body>
 
     <h1>Calcoolator</h1>
+    <!-- Hey TA, just wanted to clarify that I loved the challenge of this project, but I did not do much more than aggregate this code. I found at least 7 different calculators if not more and pulled pieces of them together into this. Most of the functionality seems to work but I occasionally run into a few problems I haven't had too much success diagnosing. Thanks again to Fulton for kinda testing me with this, and since we are kinda having a review week I'm gonna try my hand at a star wars rpg as well. -->
 
     <div id="calculator" class="calculator">
 
@@ -19,10 +20,10 @@
 
         <div id="viewer" class="viewer">0</div>
 
-        <button data-ops="plus" class="ops">AC</button>
-        <button data-ops="plus" class="ops">+/-</button>
-        <button data-ops="plus" class="ops">%</button>
-        <button data-ops="divided by" class="ops">÷</button>
+        <button id="clear" class="clear">AC</button>
+        <button data-ops="squareRoot" class="ops">√</button>
+        <button data-ops="percentage" class="ops">%</button>
+        <button data-ops="dividedBy" class="ops">÷</button>
 
         <button class="num" data-num="7">7</button>
         <button class="num" data-num="8">8</button>
@@ -112,24 +113,20 @@
                         resultNum = oldNum * theNum;
                         break;
 
-                    case "divided by":
+                    case "dividedBy":
                         resultNum = oldNum / theNum;
                         break;
-
+                    
+                    case "squareRoot":
+                        resultNum = Math.sqrt(oldNum);
+                        break;
+                    
+                    case "percentage":
+                        resultNum = oldNum % theNum;
+                        break;
                     // If equal is pressed without an operator, keep number and continue
                     default:
                         resultNum = theNum;
-                }
-
-                // If NaN or Infinity returned
-                if (!isFinite(resultNum)) {
-                    if (isNaN(resultNum)) { // If result is not a number; set off by, eg, double-clicking operators
-                        resultNum = "You broke it!";
-                    } else { // If result is infinity, set off by dividing by zero
-                        resultNum = "Look at what you've done";
-                        el('#calculator').classList.add("broken"); // Break calculator
-                        el('#reset').classList.add("show"); // And show reset button
-                    }
                 }
 
                 // Display result, finally!
